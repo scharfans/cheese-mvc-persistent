@@ -2,7 +2,7 @@ package org.launchcode.controllers;
 
 
 import org.launchcode.models.Category;
-import org.launchcode.models.CategoryDao;
+import org.launchcode.models.data.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +19,13 @@ import javax.validation.Valid;
 public class CategoryController {
 
     @Autowired
-    private CategoryController categoryDao;
+    private CategoryDao categoryDao;
 
     // Request path: /category
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("category", categoryDao.findAll());
+        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
 
         return "category/index";
