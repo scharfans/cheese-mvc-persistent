@@ -9,14 +9,11 @@
 
         <nav th:replace="fragments :: navigation"></nav>
 
-
-
-
-
         <p>
         <ul>
-            <li th:each="menu : ${menus}"></li>
+            <li th:each="menu : ${menus}">
                 <a th:href="'/menu/view/' + ${menu.id}" th:text="${menu.name}"></a>
+            </li>
         </ul>
         </p>
 

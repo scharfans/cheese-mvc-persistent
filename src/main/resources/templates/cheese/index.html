@@ -11,6 +11,9 @@
 <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
 
 
+
+
+<p>
 <table class="table">
 
     <tr>
@@ -26,6 +29,12 @@
     </tr>
 
 </table>
+</p>
+
+<nav th:fragment="navigation">
+    <a href="/cheese/add">Add</a> |
+    <a href="/cheese/remove">Remove</a>
+</nav>
 
 </body>
 </html>

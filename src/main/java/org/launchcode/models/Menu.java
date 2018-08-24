@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 public class Menu {
+
     @NotNull
     @Size(min=3, max=15)
     private String name;
@@ -23,9 +24,11 @@ public class Menu {
 
     public Menu(){ }
 
-    public Menu(String name){
-        this.name = name;
+    public void addItem(Cheese item){
+        cheeses.add(item);
     }
+
+    public Menu(String name){this.name = name;}
 
     public String getName() {
         return name;
@@ -39,15 +42,11 @@ public class Menu {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   // public void setId(int id) {this.id = id;}
 
     public List<Cheese> getCheeses() {
         return cheeses;
     }
 
-    public void addItem(Cheese item){
-        cheeses.add(item);
-    }
+
 }

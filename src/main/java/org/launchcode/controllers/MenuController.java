@@ -27,7 +27,7 @@ public class MenuController {
     MenuDao menuDao;
 
     @RequestMapping(value = "")
-    public void index(Model model){
+    public String index(Model model){
         model.addAttribute("title", "Menus");
         model.addAttribute("menus", menuDao.findAll());
         return "menu/index";
@@ -57,25 +57,26 @@ public class MenuController {
     public String viewMenu(Model model, @PathVariable int menuId) {
 
         Menu menu = menuDao.findOne(menuId);
-        model.addAttribute(menu);
+        model.addAttribute("title", menu.getName());
+        model.addAttribute("menu", menu);
 
-        //model.addAttribute("title", menu.getName());
+
         //model.addAttribute("cheeses", menu.getCheeses());
         //model.addAttribute("menuId", menu.getId());
 
         return "menu/view";
     }
 
-    @RequestMapping(value = "add-item", method = RequestMethod.GET)
+    @RequestMapping(value = "add-item/{menuId}", method = RequestMethod.GET)
     public String addItem(Model model, @PathVariable int menuId) {
 
         Menu menu = menuDao.findOne(menuId);
 
         AddMenuItemForm form = new AddMenuItemForm(
-                menuDao.findAll(),
+                cheeseDao.findAll(),
                 menu);
 
-        model.addAttribute("title", "Add item to menu: ", menu.getName());
+        model.addAttribute("title", "Add item to menu: " + menu.getName());
         model.addAttribute("form", form);
         return "menu/add-item";
         }
